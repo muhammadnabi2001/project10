@@ -30,5 +30,6 @@ Route::post('/updateuser/{id}',[UserController::class,'update'])->middleware(Che
 Route::get('/deleteuser/{id}',[UserController::class,'delete'])->middleware(Check::class.':adim,delete');
 
 Route::get('talaba',[TalabaController::class,'talaba']);
-Route::post('createtalaba',[TalabaController::class,'create']);
-Route::post('updatetalaba',[TalabaController::class,'update']);
+Route::post('createtalaba',[TalabaController::class,'create'])->middleware(Check::class.':admin,create');
+Route::post('/updatetalaba/{id}',[TalabaController::class,'update'])->middleware(Check::class.':adim,update');
+Route::get('/deletetalaba/{id}',[TalabaController::class,'delete'])->middleware(Check::class.':adim,delete');

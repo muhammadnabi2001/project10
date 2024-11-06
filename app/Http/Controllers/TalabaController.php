@@ -11,8 +11,8 @@ class TalabaController extends Controller
     public function talaba()
     {
         //dd(123);
-        $talabalar=Talaba::orderBy('id','desc')->get();
-        return view('talaba',['talabalar'=>$talabalar]);
+        $talabalar = Talaba::orderBy('id', 'desc')->get();
+        return view('talaba', ['talabalar' => $talabalar]);
     }
     public function create(Request $request)
     {
@@ -23,34 +23,38 @@ class TalabaController extends Controller
             'adress' => 'required',
         ]);
 
-        $talaba=new Talaba();
-        $talaba->name=$request->name;
-        $talaba->age=$request->age;
-        $talaba->adress=$request->adress;
+        $talaba = new Talaba();
+        $talaba->name = $request->name;
+        $talaba->age = $request->age;
+        $talaba->adress = $request->adress;
         $talaba->save();
         return redirect()->back()->with('success', 'Ro\'yxatdan o\'tish muvaffaqiyatli yakunlandi!');
-
     }
     public function update(Request $request, int $id)
     {
-        dd($request->all());
-        // $request->validate([
-        //     'name' => 'required|max:25',
-        //     'email' => 'required|max:50|min:5|email|unique:users,email,' . $id,
-        //     'password' => 'required',
-        //     'role' => 'required'
-        // ]);
+        //dd($request->all());
+        $request->validate([
+            'name' => 'required|max:25',
+            'age' => 'required|max:50',
+            'adress' => 'required',
+        ]);
 
-        // $user = User::findOrFail($id);
+        $talaba = Talaba::findOrFail($id);
 
-        // //dd($user);
-        // $user->name = $request->name;
-        // $user->email = $request->email;
-        // $user->role = $request->role;
-        // $user->password = $request->password;
+        //dd($user);
+        $talaba->name = $request->name;
+        $talaba->age = $request->age;
+        $talaba->adress = $request->adress;
 
-        // $user->save();
+        $talaba->save();
 
-        //  return redirect('/users')->with('success', "Ma'lumot muvvafaqiyatli yangilandi");
-}
+         return redirect('/talaba')->with('success', "Ma'lumot muvvafaqiyatli yangilandi");
+    }
+    public function delete(int $id)
+    {
+        //dd($id);
+        $talaba=Talaba::findOrFail($id);
+        $talaba->delete();
+        return redirect('/talaba')->with('success', "Ma'lumot muvvafaqiyatli o'chirildi");
+    }
 }

@@ -155,7 +155,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td><a href="deleteuser/{{$talaba->id}}" class="btn btn-danger">Delete</a></td>
+                                    <td><a href="deletetalaba/{{$talaba->id}}" class="btn btn-danger">Delete</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
