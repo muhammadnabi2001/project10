@@ -25,9 +25,9 @@ Route::post('updatepost{id}',[PostController::class,'update'])->name('updatepost
 Route::get('/deletepost/{id}',[PostController::class,'delete'])->middleware(Check::class.':admin,delete');
 
 Route::get('/users',[UserController::class,'users']);
-Route::post('/createuser',[UserController::class,'create'])->middleware(Check::class.':admin,create');
-Route::post('/updateuser/{id}',[UserController::class,'update'])->middleware(Check::class.':admin,update');
-Route::get('/deleteuser/{id}',[UserController::class,'delete'])->middleware(Check::class.':admin,delete');
+Route::post('/createuser',[UserController::class,'create'])->middleware(Check::class.':admin');
+Route::post('/updateuser/{id}',[UserController::class,'update'])->middleware(Check::class.':admin');
+Route::get('/deleteuser/{id}',[UserController::class,'delete'])->middleware(Check::class.':admin');
 
 Route::get('talaba',[TalabaController::class,'talaba']);
 Route::post('createtalaba',[TalabaController::class,'create'])->middleware(Check::class.':admin,create');
